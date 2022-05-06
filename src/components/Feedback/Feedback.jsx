@@ -13,19 +13,34 @@ export class FeedBack extends Component {
   handleBtn = event => {
     const { name } = event.target;
     this.setState(prevState => {
-      console.log(prevState);
       return {
         [name]: prevState[name] + 1,
       };
     });
+    this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
   };
 
   countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
-    this.setState({ total: `${good + neutral + bad}` });
+    this.setState(prevState => {
+      return { total: prevState.total + 1 };
+    });
   };
 
-  countPositiveFeedbackPercentage = () => {};
+  countPositiveFeedbackPercentage = () => {
+    this.setState(() => {
+      // const { total, good } = this.state;
+      // if (good === 1 && total === 1) {
+      //   return { positive: 100 };
+      // } else if (total === 1 && good === 0) {
+      //   return { positive: 0 };
+      // } else {
+      //   return {
+      //     positive: Math.round((good / (total)) * 100)
+      //   }
+      // }
+    });
+  };
 
   render() {
     return (
