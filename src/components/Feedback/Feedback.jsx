@@ -6,13 +6,24 @@ export class FeedBack extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+    total: 0,
+    positive: 100,
   };
 
   handleBtn = event => {
-    console.log(event.target.textContent);
+    const { name } = event.target;
+    this.setState(prevState => {
+      console.log(prevState);
+      return {
+        [name]: prevState[name] + 1,
+      };
+    });
   };
 
-  countTotalFeedback = () => {};
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    this.setState({ total: `${good + neutral + bad}` });
+  };
 
   countPositiveFeedbackPercentage = () => {};
 
@@ -20,20 +31,22 @@ export class FeedBack extends Component {
     return (
       <div className={style.container}>
         <h2>Please leave feedback</h2>
-        <button className={style.btn} onClick={this.handleBtn}>
+        <button className={style.btn} name="good" onClick={this.handleBtn}>
           Good
         </button>
-        <button className={style.btn} onClick={this.handleBtn}>
+        <button className={style.btn} name="neutral" onClick={this.handleBtn}>
           Neutral
         </button>
-        <button className={style.btn} onClick={this.handleBtn}>
+        <button className={style.btn} name="bad" onClick={this.handleBtn}>
           Bad
         </button>
         <h2>Statistics</h2>
         <ul>
-          <li>Good: {}</li>
-          <li>Neutral: {}</li>
-          <li>Bad: {}</li>
+          <li>Good: {this.state.good}</li>
+          <li>Neutral: {this.state.neutral}</li>
+          <li>Bad: {this.state.bad}</li>
+          <li>Total: {this.state.total}</li>
+          <li>Positive feedback: {this.state.positive}%</li>
         </ul>
       </div>
     );
