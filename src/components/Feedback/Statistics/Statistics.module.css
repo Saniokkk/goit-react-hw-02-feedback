@@ -1,0 +1,8 @@
+.positive {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+  padding: 5px;
+  border: 2px solid;
+  border-radius: 4px;
+}

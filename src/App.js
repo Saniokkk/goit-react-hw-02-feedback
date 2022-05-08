@@ -1,13 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-
 import { FeedBack } from './components/Feedback';
 
 function App() {
   return (
-    <>
+    <div className="App">
       <FeedBack />
-    </>
+    </div>
   );
 }
 

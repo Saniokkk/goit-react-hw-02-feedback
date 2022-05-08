@@ -38,7 +38,7 @@ export class FeedBack extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <>
+      <div className={style.container}>
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={this.state}
@@ -46,15 +46,19 @@ export class FeedBack extends Component {
           ></FeedbackOptions>
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
+          {this.countTotalFeedback() === 0 ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          )}
         </Section>
-      </>
+      </div>
     );
   }
 }
