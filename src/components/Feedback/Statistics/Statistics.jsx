@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import style from './Statistics.module.css';
+import classNames from 'classnames';
 
 export const Statistics = ({
   good,
@@ -8,22 +9,23 @@ export const Statistics = ({
   total,
   positivePercentage,
 }) => {
-  // const colorFeedback = () => {
-  //   if (positivePercentage <= 33) {
-  //     return "backgroundColor:: rgba(85, 227, 85, 0.4)";
-  //   } else if (positivePercentage <= 66) {
-  //     return "backgroundColor:: rgba(255, 255, 0, 0.4)";
-  //   } else {
-  //     return "backgroundColor:: rgba(249, 6, 6, 0.4)";
-  //   }
-  // }  w
+  const colorFeedback = () => {
+    if (positivePercentage <= 33) {
+      return 'bad';
+    } else if (positivePercentage <= 66) {
+      return 'neutral';
+    } else {
+      return 'positive';
+    }
+  };
+
   return (
     <ul className={style.statisticsList}>
       <li>Good: {good}</li>
       <li>Neutral: {neutral}</li>
       <li>Bad: {bad}</li>
       <li>Total: {total}</li>
-      <li className={style.positive}>
+      <li className={classNames(style.result, style[colorFeedback()])}>
         Positive feedback: {positivePercentage}%
       </li>
     </ul>
